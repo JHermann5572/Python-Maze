@@ -1,5 +1,6 @@
 import random
 
+#Chooses which tile in the maze to go to that has not already been passed.
 def random_neighbor(tile, width):
     legal_choice = False
     while not legal_choice:
@@ -22,7 +23,7 @@ def random_neighbor(tile, width):
             neighbor = direction
             legal_choice = True
     return neighbor
-
+#Progressing through the maze
 def random_walk(tile, width, stop_list):
     next_step = random_neighbor(tile, width)
     walk = []
@@ -33,7 +34,7 @@ def random_walk(tile, width, stop_list):
         next_step = random_neighbor(tile, width)
     result = walk[:]  # Assign result here
     return result
-
+#Prints the maze into a text file
 def printable_maze(walks, width):
     maze = [["#" for _ in range(2 * width + 1)] for _ in range(2 * width + 1)]
     for walk in walks:
@@ -50,7 +51,7 @@ def printable_maze(walks, width):
     
     maze_str = "\n".join("".join(row) for row in maze)
     return maze_str
-
+#Runs the wilson algorithm
 def wilsons(start, end, width):
     stop_list = [end]
     result = []
